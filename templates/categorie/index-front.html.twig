@@ -1,0 +1,26 @@
+{% extends "base-front.html.twig" %}
+
+{% block title %}Nos catégories{% endblock %}
+
+{% block body %}
+<h1>Nos catégories</h1>
+<div class="row">
+{% for categorie in categories %}
+<div class="col-12 col-md-4">
+    <a href="{{ path("categorie_detail", {'id': categorie.id })}}">
+    <div class="img-container">
+        {% if categorie.image is defined and categorie.image is not null %}
+            <img src="{{ asset('images/categories/' ~ categorie.image) }}" alt="" class="img-fluid">
+        {% else %}
+            <img src="{{ asset('images/categories/categorie-default.jpg') }}" alt="" class="img-fluid">
+        {% endif %}
+    </div>
+    <h2 class="titre-categorie text-center text-white bg-secondary">
+    {{ categorie.titre|upper }}
+    </h2>
+</a>
+</div>
+{% endfor %}
+</div>
+{{ knp_pagination_render(categories) }}
+{% endblock %}

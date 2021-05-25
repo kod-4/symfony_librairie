@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;500;600;700&family=Orelega+One&family=Bree+Serif&family=Carter+One&display=swap');
+body {
+    font-family: 'Advent Pro', sans-serif; 
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Orelega One', cursive;
+    }
+    nav {
+        .navbar-brand {
+            font-family: 'Carter One', cursive;
+        }
+        .navbar-nav {
+            .nav-item {
+                .nav-link {
+                    font-family: 'Bree Serif', serif;
+                }
+            }
+        }
+    }
+    .table {
+        th {
+            font-family: 'Bree Serif', serif;
+        }
+    }
+    .btn {
+        font-family: 'Bree Serif', serif;
+    }
+    .img-list {
+        width: 100%;
+        max-width: 80px;
+    }
+    .img-car {
+        height: 40vh;
+        width: 100%;
+        object-fit: cover;
+    }
+}

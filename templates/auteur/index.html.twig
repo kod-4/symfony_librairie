@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur index{% endblock %}
+
+{% block body %}
+    <h1>Auteur index</h1>
+    <a class="btn btn-outline-primary my-1" href="{{ path('auteur_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Biographie</th>
+                <th>Image</th>
+                <th>Active</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td>{{ auteur.id }}</td>
+                <td>{{ auteur.nom }}</td>
+                <td>{{ auteur.prenom }}</td>
+                <td>{{ auteur.biographie }}</td>
+                <td><img src="{{ asset('images/auteur/' ~ auteur.image) }}" alt="" class="img-list"></td>
+                <td>{{ auteur.active ? 'Yes' : 'No' }}</td>
+                <td>{{ auteur.updatedAt ? auteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="d-flex">
+                    <a class="link-secondary me-2" href="{{ path('auteur_show', {'id': auteur.id}) }}"><i class="far fa-eye"></i></a>
+                    <a class="link-primary" href="{{ path('auteur_edit', {'id': auteur.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

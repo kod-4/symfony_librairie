@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Home</h1>
+    <a class="btn btn-outline-primary my-2" href="{{ path('home_index') }}">back to list</a>
+
+    <table class="table">
+        <tbody>
+            <tr >
+                <th class="table-dark">Id</th>
+                <td>{{ home.id }}</td>
+            </tr>
+            <tr>
+                <th class="table-dark">Titre</th>
+                <td>{{ home.titre }}</td>
+            </tr>
+            <tr>
+                <th class="table-dark">Description</th>
+                <td>{{ home.description }}</td>
+            </tr>
+            <tr>
+                <th class="table-dark">Signature</th>
+                <td>{{ home.signature }}</td>
+            </tr>
+            <tr>
+                <th class="table-dark">Active</th>
+                <td>{{ home.active ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-outline-primary my-2" href="{{ path('home_edit', {'id': home.id}) }}">edit</a>
+
+    {{ include('home/_delete_form.html.twig') }}
+{% endblock %}

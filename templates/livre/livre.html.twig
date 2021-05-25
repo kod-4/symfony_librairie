@@ -1,0 +1,47 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}{{ livre.titre }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">{{ livre.titre }}</h1>
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <img src="{{ asset('images/livres/' ~ livre.image) }}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-8 col-12" id="content">
+            <p>{{ livre.description }}</p>
+            <a href="{{ path('auteur_detail', {'id': livre.auteur.id}) }}" class="btn btn-outline-primary">Voir l'Auteur</a>
+            {% if app.user.roles is defined and "ROLE_USER" in app.user.roles %}
+                {% set ajoutListe = 0 %}
+                {% for liste in app.user.listes %}
+                    {% if liste.livre == livre %}
+                        {% set ajoutListe = 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% if ajoutListe == 1 %}
+                    <p class="alert alert-success">Ajout Validé ✔</p>
+                {% else %}
+                    <a href="#" class="btn btn-outline-primary" id="add" data-id="{{ livre.id }}"><i class="fas fa-cart-plus"></i></a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+	<script>
+		$("#add").on("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        // Envoi de la requête en ajax
+        $.ajax({
+        url: "/add",
+        type: "POST",
+        data: "idLivre=" + $("#add").attr("data-id")
+        }).done(function (response) {
+        console.log(response);
+        })
+        $(this).remove();
+        $("#content").append('<p class="alert alert-success text-center">Livre ajouté</p>');
+        });
+	</script>
+{% endblock %}

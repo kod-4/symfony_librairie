@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Livre index</h1>
+    <a class="btn btn-outline-primary my-1" href="{{ path('livre_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Active</th>
+                <th>Mise à jour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.description }}</td>
+                <td><img src="{{ asset('images/livres/' ~ livre.image) }}" alt="" class="img-list"></td>
+                <td>{{ livre.active ? 'Yes' : 'No' }}</td>
+                <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="d-flex">
+                    <a class="link-secondary me-2" href="{{ path('livre_show', {'id': livre.id}) }}"><i class="far fa-eye"></i></a>
+                    <a class="link-primary" href="{{ path('livre_edit', {'id': livre.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

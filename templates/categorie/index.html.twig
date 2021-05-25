@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Categorie index</h1>
+    <a class="btn btn-outline-primary my-1" href="{{ path('categorie_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.titre }}</td>
+                <td>{{ categorie.description }}</td>
+                <td><img src="{{ asset('images/categories/' ~ categorie.image) }}" alt="" class="img-list"></td>
+                <td>{{ categorie.active ? 'Yes' : 'No' }}</td>
+                <td class="d-flex">
+                    <a class="link-secondary me-2" href="{{ path('categorie_show', {'id': categorie.id}) }}"><i class="far fa-eye"></i></a>
+                    <a class="link-primary" href="{{ path('categorie_edit', {'id': categorie.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

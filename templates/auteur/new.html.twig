@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Auteur{% endblock %}
+
+{% block body %}
+<div class="col-6 mx-auto border">
+    <h1 class="text-center">Create new Auteur</h1>
+    <a class="btn btn-outline-primary my-1" href="{{ path('auteur_index') }}">back to list</a>
+    {{ include('auteur/_form.html.twig') }}
+</div>
+{% endblock %}

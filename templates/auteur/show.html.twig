@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur{% endblock %}
+
+{% block body %}
+<div class="col-8 mx-auto border">
+    <h1 class="text-center">Auteur</h1>
+    <a class="btn btn-outline-primary my-1" href="{{ path('auteur_index') }}">back to list</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ auteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ auteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ auteur.biographie }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ auteur.image }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ auteur.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ auteur.updatedAt ? auteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-outline-primary my-1" href="{{ path('auteur_edit', {'id': auteur.id}) }}">edit</a>
+    {{ include('auteur/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base-front.html.twig" %}
+{% block title %}{{ categorie.titre}}{% endblock %}
+{% block body %}
+	<h1 class="text-center">{{ categorie.titre }}</h1>
+	<div class="row mt-2">
+		<div class="col-12 col-md-4">
+			<img src="{{ asset('images/categories/' ~ categorie.image ) }}" alt="" class="img-fluid">
+		</div>
+		<div class="col-12 col-md-8">
+			{% if categorie.description is defined and categorie.description is not null  %}
+				{{ categorie.description|raw }}
+			{% endif %}
+		</div>
+	</div>
+	<div class="row mt-3">
+		{% for livre in categorie.livres %}
+			<div class="col-12 col-md-3">
+				<a href="{{ path('livre_detail', {'id': livre.id })}}">
+					<div class="img-cat-container">
+						<img src="{{ asset('images/livres/' ~ livre.image )}}" alt="" class="img-fluid">
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
